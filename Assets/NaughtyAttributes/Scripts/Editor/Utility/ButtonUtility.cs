@@ -6,6 +6,18 @@ namespace NaughtyAttributes.Editor
 {
 	public static class ButtonUtility
 	{
+		public static bool IsEnabled(Object[] targets, MethodInfo method)
+		{
+			for (int i = 0; i < targets.Length; ++i)
+			{
+				if (IsEnabled(targets[i], method) == false)
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
 		public static bool IsEnabled(Object target, MethodInfo method)
 		{
 			EnableIfAttributeBase enableIfAttribute = method.GetCustomAttribute<EnableIfAttributeBase>();
@@ -27,6 +39,18 @@ namespace NaughtyAttributes.Editor
 
 				return false;
 			}
+		}
+
+		public static bool IsVisible(Object[] targets, MethodInfo method)
+		{
+			for (int i = 0; i < targets.Length; ++i)
+			{
+				if (IsVisible(targets[i], method) == false)
+				{
+					return false;
+				}
+			}
+			return true;
 		}
 
 		public static bool IsVisible(Object target, MethodInfo method)
